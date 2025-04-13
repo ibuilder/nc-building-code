@@ -32,6 +32,52 @@ paths:
                 type: array
                 items:
                   type: string
+  /permits:
+    get:
+      summary: Get Permit Requirements
+      description: Retrieve information about building permit requirements in North Carolina.
+      responses:
+        '200':
+          description: Information about permit requirements
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  requirements:
+                    type: array
+                    items:
+                      type: string
+                  exemptions:
+                    type: array
+                    items:
+                      type: string
+                  applicationProcess:
+                    type: string
+
+  /inspections:
+    get:
+      summary: Get Inspection Information
+      description: Retrieve information about required building inspections in North Carolina.
+      responses:
+        '200':
+          description: Information about inspections
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      example: "Foundation Inspection"
+                    description:
+                      type: string
+                      example: "Inspection of foundation elements before concealment"
+                    timing:
+                      type: string
+                      example: "After foundation is complete but before backfill"
 components:
   schemas:
     BuildingRequirement:
