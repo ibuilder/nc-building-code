@@ -1,0 +1,72 @@
+openapi: 3.0.0
+info:
+  title: North Carolina Existing Building Code
+  description: API documentation for the North Carolina Existing Building Code.
+  version: 1.0.0
+servers:
+  - url: https://www.ncosfm.gov/codes
+paths:
+  /existing-buildings:
+    get:
+      summary: Retrieve existing building information
+      description: Get details about existing buildings under the North Carolina Existing Building Code.
+      responses:
+        '200':
+          description: A list of existing buildings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: "EB-001"
+                    name:
+                      type: string
+                      example: "Old Town Hall"
+                    address:
+                      type: string
+                      example: "123 Main St, Old Town, NC"
+                    complianceStatus:
+                      type: string
+                      example: "Compliant"
+        '404':
+          description: No existing buildings found
+  /existing-buildings/{id}:
+    get:
+      summary: Retrieve specific existing building information
+      description: Get detailed information about a specific existing building.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the existing building
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Detailed information about the existing building
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: "EB-001"
+                  name:
+                    type: string
+                    example: "Old Town Hall"
+                  address:
+                    type: string
+                    example: "123 Main St, Old Town, NC"
+                  complianceStatus:
+                    type: string
+                    example: "Compliant"
+                  historicalSignificance:
+                    type: string
+                    example: "Listed on the National Register of Historic Places"
+        '404':
+          description: Existing building not found

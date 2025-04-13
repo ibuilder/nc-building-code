@@ -1,0 +1,62 @@
+openapi: 3.0.0
+info:
+  title: North Carolina Reference Codes
+  description: Documentation for reference codes related to the North Carolina Building Code.
+  version: 1.0.0
+paths:
+  /codes:
+    get:
+      summary: Retrieve a list of reference codes
+      responses:
+        '200':
+          description: A list of reference codes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    code:
+                      type: string
+                      example: "NCBC2018"
+                    description:
+                      type: string
+                      example: "North Carolina Building Code 2018"
+  /codes/{codeId}:
+    get:
+      summary: Retrieve details for a specific reference code
+      parameters:
+        - name: codeId
+          in: path
+          required: true
+          description: The ID of the reference code
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Details of the reference code
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: "NCBC2018"
+                  description:
+                    type: string
+                    example: "North Carolina Building Code 2018"
+                  details:
+                    type: string
+                    example: "Detailed information about the North Carolina Building Code 2018."
+        '404':
+          description: Reference code not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Reference code not found."

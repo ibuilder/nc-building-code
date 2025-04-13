@@ -1,0 +1,50 @@
+openapi: 3.0.0
+info:
+  title: North Carolina Building Code
+  description: API documentation for the North Carolina Building Code, including general and special requirements.
+  version: 1.0.0
+servers:
+  - url: https://www.ncosfm.gov/codes
+paths:
+  /building-requirements:
+    get:
+      summary: Get Building Requirements
+      description: Retrieve the general requirements for the North Carolina Building Code.
+      responses:
+        '200':
+          description: A list of building requirements
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+  /special-requirements:
+    get:
+      summary: Get Special Requirements
+      description: Retrieve the special requirements for the North Carolina Building Code.
+      responses:
+        '200':
+          description: A list of special requirements
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+components:
+  schemas:
+    BuildingRequirement:
+      type: object
+      properties:
+        id:
+          type: integer
+        description:
+          type: string
+    SpecialRequirement:
+      type: object
+      properties:
+        id:
+          type: integer
+        description:
+          type: string
